@@ -4,12 +4,11 @@ namespace PlayerCombat
 {
     class Program
     {
-        public static Player player1;
         static void Main(string[] args)
         {
-            createCharakter();
-            equipment();
-            player1.playerStatus();
+            Player player = createCharakter();
+            equipment(player);
+            player.playerStatus();
         }
 
         public static int eingabePrüfung(string input, int minValue, int maxValue)
@@ -26,21 +25,19 @@ namespace PlayerCombat
             }
         }
 
-        public static void createCharakter()
+        public static Player createCharakter()
         {
             Console.WriteLine("gib deinem Charakter eine Name");
             string name = Console.ReadLine();
-            if (name != null && name != "")
+            if (!string.IsNullOrEmpty(name))
             {
-                Player player1 = new Player(name);
+                return new Player(name);
             }
-            else
-            {
-                Console.WriteLine("Ohne gibts nicht!");
-                createCharakter();
-            }
+            
+            Console.WriteLine("Ohne gibts nicht!");
+            return createCharakter();
         }
-        public static void equipment()
+        public static void equipment(Player player)
         {
             Weapon dagger = new Weapon("Dolch", 25, 3);
             Weapon sword = new Weapon("Schwert", 50, 2);
@@ -71,18 +68,18 @@ namespace PlayerCombat
             switch(armorChoise)
             {
                 case 1:
-                    player1.defensive = leatheramor.armorDefensive;
-                    player1.agility = leatheramor.armorAgility;
+                    player.defensive = leatheramor.armorDefensive;
+                    player.agility = leatheramor.armorAgility;
                     break;
 
                 case 2:
-                    player1.defensive = studdedarmour.armorDefensive;
-                    player1.agility = studdedarmour.armorAgility;
+                    player.defensive = studdedarmour.armorDefensive;
+                    player.agility = studdedarmour.armorAgility;
                     break;
 
                 case 3:
-                    player1.defensive = steelarmor.armorDefensive;
-                    player1.agility = steelarmor.armorAgility;
+                    player.defensive = steelarmor.armorDefensive;
+                    player.agility = steelarmor.armorAgility;
                     break;
 
             }
@@ -106,18 +103,18 @@ namespace PlayerCombat
             switch (weaponChoise)
             {
                 case 1:
-                    player1.damage = dagger.weaponDamage;
-                    player1.weaponspeed =dagger.weaponSpeed;
+                    player.damage = dagger.weaponDamage;
+                    player.weaponspeed =dagger.weaponSpeed;
                     break;
 
                 case 2:
-                    player1.damage = sword.weaponDamage;
-                    player1.weaponspeed = sword.weaponSpeed;
+                    player.damage = sword.weaponDamage;
+                    player.weaponspeed = sword.weaponSpeed;
                     break;
 
                 case 3:
-                    player1.damage = hammer.weaponDamage;
-                    player1.weaponspeed = hammer.weaponSpeed;
+                    player.damage = hammer.weaponDamage;
+                    player.weaponspeed = hammer.weaponSpeed;
                     break;
 
             }
