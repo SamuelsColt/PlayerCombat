@@ -4,6 +4,10 @@ namespace PlayerCombat
 {
     class Program
     {
+        /// <summary>
+        /// Einstiehspunkt!
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             Player player = createCharakter();
