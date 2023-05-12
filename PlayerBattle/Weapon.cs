@@ -8,9 +8,9 @@ namespace PlayerBattle
 {
     internal class Weapon
     {
-        public string weaponName;
-        public int weaponDamage;
-        public int weaponSpeed;
+        private string weaponName;
+        private int weaponDamage;
+        private int weaponSpeed;
 
         public Weapon(string weaponName, int weaponDamage, int weaponSpeed)
         {
@@ -19,6 +19,36 @@ namespace PlayerBattle
             this.weaponSpeed = weaponSpeed;
         }
 
+        public string WeaponName
+        {
+            get
+            {
+                return weaponName;
+            }
+        }
+
+        public int WeaponDamage
+        {
+            get
+            {
+                return weaponDamage;
+            }
+            set
+            {
+                weaponDamage = value;
+            }
+        }
+        public int WeaponSpeed
+        {
+            get
+            {
+                return weaponSpeed;
+            }
+            set
+            {
+                weaponSpeed = value;
+            }
+        }
         public void showValue()
         {
             Console.WriteLine("{0}: Schaden = {1}, Geschwindigkeit = {2}", weaponName, weaponDamage, weaponSpeed);

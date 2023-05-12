@@ -8,14 +8,46 @@ namespace PlayerBattle
 {
     internal class Armor
     {
-        public string armorName;
-        public int armorDefensive;
-        public int armorAgility;
+        private string armorName;
+        private int armorDefensive;
+        private int armorAgility;
+
         public Armor(string armorName, int armorDefensive, int armoragility)
         {
             this.armorName = armorName;
             this.armorDefensive = armorDefensive;
             this.armorAgility = armoragility;
+        }
+
+        public string ArmorName
+        {
+            get
+            {
+                return armorName;
+            }
+        }
+
+        public int ArmorDefensive
+        {
+            get
+            {
+                return armorDefensive;
+            }
+            set
+            {
+                armorDefensive = value;
+            }
+        }
+         public int ArmorAgility
+        {
+            get
+            {
+                return armorAgility;
+            }
+            set
+            {
+                armorAgility = value;
+            }
         }
 
         public void showValue()

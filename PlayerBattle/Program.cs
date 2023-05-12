@@ -1,19 +1,31 @@
 ﻿using PlayerBattle;
+using System.Numerics;
+using System.Runtime.ExceptionServices;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PlayerCombat
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(String[] args)
         {
             Player player = createCharakter();
             equipment(player);
             player.playerStatus();
+
+            Player player2 = createCharakter();
+            equipment(player2);
+            player2.playerStatus();
+
+
+            // PlayerAttackPlayer2(Player player,Player player2);
+
+
         }
 
-        public static int eingabePrüfung(string input, int minValue, int maxValue)
-        {
 
+        public static int eingabePrüfung(String input, Int32 minValue, Int32 maxValue)
+        {
             if (int.TryParse(input, out int output) && output >= minValue && output <= maxValue)
             {
                 return output;
@@ -47,7 +59,7 @@ namespace PlayerCombat
             Armor studdedarmour = new Armor("Beschlagene-Rüstung", 6, 2);
             Armor steelarmor = new Armor("Stahl-Rüstung", 9, 1);
 
-            Console.WriteLine("also gut {0}, zieh dir mal was an das ist ja unerträglich!");
+            Console.WriteLine("also gut {0}, zieh dir mal was an das ist ja unerträglich!", player.playerName);
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("-");
@@ -68,18 +80,18 @@ namespace PlayerCombat
             switch(armorChoise)
             {
                 case 1:
-                    player.defensive = leatheramor.armorDefensive;
-                    player.agility = leatheramor.armorAgility;
+                    player.Defensive = leatheramor.ArmorDefensive;
+                    player.Agility = leatheramor.ArmorAgility;
                     break;
 
                 case 2:
-                    player.defensive = studdedarmour.armorDefensive;
-                    player.agility = studdedarmour.armorAgility;
+                    player.Defensive = studdedarmour.ArmorDefensive;
+                    player.Agility = studdedarmour.ArmorAgility;
                     break;
 
                 case 3:
-                    player.defensive = steelarmor.armorDefensive;
-                    player.agility = steelarmor.armorAgility;
+                    player.Defensive = steelarmor.ArmorDefensive;
+                    player.Agility = steelarmor.ArmorAgility;
                     break;
 
             }
@@ -103,22 +115,29 @@ namespace PlayerCombat
             switch (weaponChoise)
             {
                 case 1:
-                    player.damage = dagger.weaponDamage;
-                    player.weaponspeed =dagger.weaponSpeed;
+                    player.Damage = dagger.WeaponDamage;
+                    player.Weaponspeed =dagger.WeaponSpeed;
                     break;
 
                 case 2:
-                    player.damage = sword.weaponDamage;
-                    player.weaponspeed = sword.weaponSpeed;
+                    player.Damage = sword.WeaponDamage;
+                    player.Weaponspeed = sword.WeaponSpeed;
                     break;
 
                 case 3:
-                    player.damage = hammer.weaponDamage;
-                    player.weaponspeed = hammer.weaponSpeed;
+                    player.Damage = hammer.WeaponDamage;
+                    player.Weaponspeed = hammer.WeaponSpeed;
                     break;
 
             }
+        }
 
+        public void PlayerAttackPlayer2(Player player, Player player2)
+        {
+            for (int i = 0; i < player.Movement ; i++)
+            {
+                player2.HealthPoints = player2.HealthPoints - (player.Damage - player2.Defensive);
+            }
         }
     }
 }
